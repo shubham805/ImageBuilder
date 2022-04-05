@@ -5,22 +5,6 @@ resources:
 variables:
 - group: AppServiceLinux
 
-schedules:
-- cron: "0 0 * * *"
-  displayName: Daily midnight build
-  branches:
-    include:
-    - master
-    - releases/*
-    exclude:
-    - releases/ancient/*
-- cron: "0 12 * * 0"
-  displayName: Weekly Sunday build
-  branches:
-    include:
-    - releases/*
-  always: true
-
 jobs:
 
 - job: Job_CleanUp
