@@ -1,6 +1,6 @@
 #Configure CDN settings 
 if [[ $IS_BLOB_STORAGE_ENABLED == "true" ]] && [ $(grep "BLOB_STORAGE_CONFIGURATION_COMPLETE" $WORDPRESS_LOCK_FILE) ]; then
-    if wp w3-total-cache option set cdn.mirror.domain $CDN_ENDPOINT --type=array --path=$WORDPRESS_HOME --allow-root \
+    if wp w3-total-cache option set cdn.azure.cname $CDN_ENDPOINT --type=array --path=$WORDPRESS_HOME --allow-root \
     && wp w3-total-cache option set cdn.includes.enable true --type=boolean --path=$WORDPRESS_HOME --allow-root \
     && wp w3-total-cache option set cdn.minify.enable true --type=boolean --path=$WORDPRESS_HOME --allow-root \
     && wp w3-total-cache option set cdn.custom.enable true --type=boolean --path=$WORDPRESS_HOME --allow-root \
