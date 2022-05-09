@@ -99,7 +99,7 @@ jobs:
     - task: ShellScript@2
       displayName: 'Build Images'
       inputs:
-        scriptPath: ../../src/build_and_push_runtime_images.sh
+        scriptPath: $(System.DefaultWorkingDirectory)/v2/src/build_and_push_runtime_images.sh
         args: $(Build.ArtifactStagingDirectory) appsvctest $(System.DefaultWorkingDirectory)/v2/src/python $(Build.BuildNumber) ${{ parameters.stackName }} $(Build.Reason) 2.7
 
 trigger: none
