@@ -79,7 +79,7 @@ jobs:
     - task: ShellScript@2
       displayName: 'Generate Dockerfile and its dependencies'
       inputs:
-        scriptPath: ../../src/generate_dockerfiles_for_runtime_images.sh
+        scriptPath: $(System.DefaultWorkingDirectory)/v2/src/generate_dockerfiles_for_runtime_images.sh
         args: ${{ parameters.stackName }} $(Build.ArtifactStagingDirectory) ${{ parameters.baseImageName }} ${{ parameters.baseImageVersion }} $(System.DefaultWorkingDirectory)/v2/src/python 2.7
     
     - task: Docker@2
