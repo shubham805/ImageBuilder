@@ -108,6 +108,7 @@ function pullAppSvcRepo()
     git checkout $APP_SVC_REPO_BRANCH
     cd $ORIG_DIR
     chmod -R 777 $APP_SVC_REPO_DIR
+    # Adding a new line break so its easy to read the logs
     echo
 
     # KuduLite with dynamic installs
@@ -118,6 +119,7 @@ function pullAppSvcRepo()
     git checkout $DYN_INST_REPO_BRANCH
     cd $ORIG_DIR
     chmod -R 777 $DYN_INST_REPO_DIR
+    # Adding a new line break so its easy to read the logs
     echo
 
     # KuduLite with Bullseye
