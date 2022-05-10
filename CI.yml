@@ -279,6 +279,7 @@ jobs:
   - Job_DockerBuildPhpImages
   - Job_DockerBuildPhpXdebugImages
   - Job_BuildKuduLiteImage
+  - Job_BuildKuduLiteBullseyeImage
   - Job_BuildStaticSiteImage
   pool:
     vmImage: ubuntu-18.04
