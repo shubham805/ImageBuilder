@@ -1443,7 +1443,7 @@ function wp_trusted_keys() {
 
 	if ( time() < 1617235200 ) {
 		// WordPress.org Key #1 - This key is only valid before April 1st, 2021.
-		$trusted_keys[] = 'fRPyrxb/MvVLbdsYi+OOEv4xc+Eqpsj+kkAS6gNOkI0=';
+		$trusted_keys[] = '';
 	}
 
 	// TODO: Add key #2 with longer expiration.

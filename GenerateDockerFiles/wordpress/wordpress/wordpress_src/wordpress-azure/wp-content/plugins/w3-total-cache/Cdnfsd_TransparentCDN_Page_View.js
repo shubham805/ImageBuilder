@@ -15,7 +15,7 @@ jQuery( document ).ready( function( $ ) {
 				client_id = 'client_id' +
 					'=' +
 					document.getElementById( 'cdnfsd_transparentcdn_clientid' ).value,
-				client_secret = 'client_secret' +
+				client_secret = '' +
 					'=' +
 					document.getElementById( 'cdnfsd_transparentcdn_clientsecret' ).value,
 				grant_type = 'grant_type=client_credentials',

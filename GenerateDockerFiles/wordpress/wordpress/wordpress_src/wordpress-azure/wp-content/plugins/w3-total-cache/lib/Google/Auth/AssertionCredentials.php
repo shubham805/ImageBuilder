@@ -52,7 +52,7 @@ class W3TCG_Google_Auth_AssertionCredentials
       $serviceAccountName,
       $scopes,
       $privateKey,
-      $privateKeyPassword = 'notasecret',
+      $privateKeyPassword = '',
       $assertionType = 'http://oauth.net/grant_type/jwt/1.0/bearer',
       $sub = false,
       $useCache = true

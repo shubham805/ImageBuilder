@@ -193,7 +193,7 @@ class Resources
     const WRAP_ACCESS_TOKEN            = 'wrap_access_token';
     const WRAP_ACCESS_TOKEN_EXPIRES_IN = 'wrap_access_token_expires_in';
     const WRAP_NAME                    = 'wrap_name';
-    const WRAP_PASSWORD                = 'wrap_password';
+    const WRAP_PASSWORD                = '';
     const WRAP_SCOPE                   = 'wrap_scope';
 
     // HTTP Methods
