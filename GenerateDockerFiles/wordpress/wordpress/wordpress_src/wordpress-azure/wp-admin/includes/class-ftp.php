@@ -144,7 +144,7 @@ class ftp_base {
 		$this->SetTimeout(30);
 		$this->Passive(!$this->_port_available);
 		$this->_login="anonymous";
-		$this->_password="anon@ftp.com";
+		$this->_password="";
 		$this->_features=array();
 	    $this->OS_local=FTP_OS_Unix;
 		$this->OS_remote=FTP_OS_Unix;
@@ -362,7 +362,7 @@ class ftp_base {
 		if(!is_null($user)) $this->_login=$user;
 		else $this->_login="anonymous";
 		if(!is_null($pass)) $this->_password=$pass;
-		else $this->_password="anon@anon.com";
+		else $this->_password="";
 		if(!$this->_exec("USER ".$this->_login, "login")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
 		if($this->_code!=230) {
