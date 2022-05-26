@@ -272,8 +272,14 @@ update_localdb_config(){
 
 setup_nginx() {
     test ! -d "$NGINX_LOG_DIR" && echo "INFO: Log folder for nginx/php not found. creating..." && mkdir -p "$NGINX_LOG_DIR"
-    test -d "/home/etc/nginx" && echo "/home/etc/nginx exists.." && ln -s /home/etc/nginx /etc/nginx && ln -sf /usr/lib/nginx/modules /home/etc/nginx/modules
+    test -d "/home/etc/nginx" && echo "/home/etc/nginx exists.." && rm -rf /etc/nginx && ln -s /home/etc/nginx /etc/nginx && ln -sf /usr/lib/nginx/modules /home/etc/nginx/modules
     test ! -d "/home/etc/nginx" && mkdir -p /home/etc && cp -R /etc/nginx /home/etc/ && rm -rf /etc/nginx && ln -s /home/etc/nginx /etc/nginx && ln -sf /usr/lib/nginx/modules /home/etc/nginx/modules
+}
+
+setup_and_run_startup_script() {
+    test ! -d "/home/dev" && echo "INFO: /home/dev not found. Creating..." && mkdir -p /home/dev
+    touch /home/dev/startup.sh
+    bash /home/dev/startup.sh
 }
 
 setup_wordpress_lock() {
@@ -309,6 +315,9 @@ temp_server_start() {
         fi
         let try_count+=1 
     done
+    
+    #ensure correct default.conf
+    cp /usr/src/nginx/wordpress-server.conf /etc/nginx/conf.d/default.conf
 }
 
 temp_server_stop() {
@@ -319,7 +328,11 @@ temp_server_stop() {
 
 echo "Setup openrc ..." && openrc && touch /run/openrc/softlevel
 
+#moving /etc/nginx to /home/etc/nginx
+#/home directory is mounted to persistent storage
+#This enables custom configuration of nginx
 setup_nginx
+
 setup_wordpress_lock
 
 #Start temporary server with static webpage until wordpress is installed
@@ -460,8 +473,8 @@ if [ "$IS_TEMP_SERVER_STARTED" == "True" ]; then
     #stop temporary server
     temp_server_stop
 fi
-#ensure correct default.conf before starting/reloading WordPress server
-cp /usr/src/nginx/wordpress-server.conf /etc/nginx/conf.d/default.conf
+
+setup_and_run_startup_script
 
 cd /usr/bin/
 supervisord -c /etc/supervisord.conf
