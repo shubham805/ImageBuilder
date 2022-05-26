@@ -469,12 +469,12 @@ echo "Starting SSH ..."
 echo "Starting php-fpm ..."
 echo "Starting Nginx ..."
 
+setup_and_run_startup_script
+
 if [ "$IS_TEMP_SERVER_STARTED" == "True" ]; then
     #stop temporary server
     temp_server_stop
 fi
-
-setup_and_run_startup_script
 
 cd /usr/bin/
 supervisord -c /etc/supervisord.conf
