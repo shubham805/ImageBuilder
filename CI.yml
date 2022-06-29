@@ -23,6 +23,10 @@ jobs:
     vmImage: ubuntu-18.04
   timeoutInMinutes: 150
   steps:
+  - script: |
+    echo '##vso[task.setvariable variable=DisableDockerDetector;]true'
+  displayName: Disable Docker Detector for Secure Suppy Chain 
+
   - template: CleanUp/cleanImageCache.yml
   - template: CleanUp/cleanUpJob.yml
 
@@ -34,6 +38,7 @@ jobs:
   timeoutInMinutes: 100
   steps:
   - script: |
+      echo '##vso[task.setvariable variable=DisableDockerDetector;]true'
       echo "##vso[task.setvariable variable=InitialChecks;]true"
       echo "##vso[task.setvariable variable=GenerateDockerFiles;]false"
       echo "##vso[task.setvariable variable=BuildBuildImages;]false"
