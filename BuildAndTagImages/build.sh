@@ -55,7 +55,7 @@ function buildDockerImage()
     if [ -f "$CONFIG_DIR/${STACK}VersionTemplateMap.txt" ]; then
         while IFS=, read -r STACK_VERSION BASE_IMAGE STACK_VERSION_TEMPLATE_DIR STACK_TAGS || [[ -n $STACK_VERSION ]] || [[ -n $BASE_IMAGE ]] || [[ -n $STACK_VERSION_TEMPLATE_DIR ]] || [[ -n $STACK_TAGS ]]
         do
-            if [[ -z $STACK_VERSION_TO_BUILD || $STACK_VERSION_TO_BUILD == $STACK_VERSION ]];
+            if [[ -z $STACK_VERSION_TO_BUILD || $STACK_VERSION_TO_BUILD == $STACK_VERSION]];
             then
                 echo "Stack Tag     : ${STACK_TAGS}"
                 echo "Stack Version : $STACK_VERSION"
@@ -111,7 +111,7 @@ function buildDockerImage()
                         docker build -t "$BuildVerRepoTag" -f "$appSvcDockerfilePath" .
                     fi
 
-                    if [ "$BUILD_REASON" != "PullRequest" ]; then
+                    if [ "$BUILD_REASON" != "PullRequest" && $STACK = "wordpress"]; then
                         docker push $BuildVerRepoTag
                         docker tag $BuildVerRepoTag $MCRRepoTag
                         docker push $MCRRepoTag
